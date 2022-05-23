@@ -210,7 +210,11 @@ resource "aws_eip" "eip" {
   instance = aws_instance.umamiec2.id
 
 }
-
+# Save Rendered playbook content to local file
+resource "local_file" "playbook-rendered-file" {
+  content = "${data.template_file.playbook.rendered}"
+  filename = "./playbook-rendered.yml"
+}
 
 
 resource "null_resource" "umami_Installation_Waiting" {
@@ -254,11 +258,7 @@ output "INFO" {
   value = "AWS Resources and umami has been provisioned. Go to http://${aws_eip.eip.public_ip}:3000"
 }
 
-# Save Rendered playbook content to local file
-resource "local_file" "playbook-rendered-file" {
-  content = "${data.template_file.playbook.rendered}"
-  filename = "./playbook-rendered.yml"
-}
+
 
 }
 
