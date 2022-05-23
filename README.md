@@ -1,5 +1,5 @@
 
-<h3>  Devops Challange Solution <h3>
+<h3>  Devops Challenge Solution <h3>
 
 Task 1:-  I have created a script "script.sh" which will fetch logs as your requirment 
   
