@@ -30,6 +30,7 @@ Make sure you have configured aws CLI in your local machine & Ansible is install
 <p> Terraform should be installed in your local machine </p>
 <p> Ansible should be installed in youn local machine.
 <p> Configure AWS CLI with <code> aws configure </code> if you havent configured already </p>
+  
 
 <------------------------------------------------------------------------------------------------------------------------>
 
