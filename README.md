@@ -7,6 +7,8 @@
   
 
 Task 2 & 3 & 4:- 
+  
+  
 
 This terraform projects creates RDS databse with mysql 5.7 & EC2 instance with umami pre installed and configured using ansible as CD.
 
