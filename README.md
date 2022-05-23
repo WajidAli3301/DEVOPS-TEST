@@ -2,6 +2,9 @@
 <h3>  Devops Challange Solution <h3>
 
 <h3>Task 1:-<h3>  I have created a script "script.sh" which will fetch logs as your requirment 
+  
+  
+  
 
 Task 2 & 3 & 4:- 
 
@@ -29,7 +32,7 @@ Make sure you have configured aws CLI in your local machine & Ansible is install
 <------------------------------------------------------------------------------------------------------------------------>
 
 <h2> STEPS: </h2>
- <p>Clone this repo using command <code>  git clone https://github.com/WajidAli3301/DevOps-Challenge.git</code></p>
+ <p>Clone this repo using command <code>  git clone https://github.com/devbhusal/terraform-ansible-wordpress.git</code></p>
  <p> Go to project folder         <code>  cd DevOps-Challenge</code></p>
  <p>Initialize terraform          <code>  terraform init</code></p>
  <p>Change database and aws setting in terraform.tfvars file </p>
