@@ -21,6 +21,8 @@ Make sure you have configured aws CLI in your local machine & Ansible is install
  <h3> Security: </h3>
 <p> EC2 will be launched in public subnet and RDS will be launched in private subnet </p>
 <p> Only EC2 with defined security group can access RDS and RDS wont have internet access </p>
+  
+  
 
 
 <----------------------------------------------------------------------------------------------------------------------->
