@@ -1,0 +1,13 @@
+[Unit]
+Description=Umami application
+
+[Service]
+Type=simple
+Restart=always
+User=nobody
+Group=nobody
+WorkingDirectory=/root/umami
+ExecStart=/usr/bin/npm start
+
+[Install]
+WantedBy=multi-user.target

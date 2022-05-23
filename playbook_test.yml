@@ -1,0 +1,81 @@
+---
+- hosts: all
+  become: yes
+  vars:
+      git_repo_url: https://github.com/mikecao/umami.git
+      repo_path: /root/umami
+      repo_branch: master 
+
+  
+
+  tasks:
+
+  - name: Ansible shell module multiple commands
+    shell: 'curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -'
+
+  - name: Install reqired packages
+    apt: name={{ item }} state=present
+    with_items:
+      - git
+      - curl
+      - wget
+      - nginx
+      - nodejs
+      - mysql-client 
+
+  - name: Setting up variables
+    set_fact:
+      #MySQL Settings to be rendered by terraform
+      DATABASE_URL: ${db_RDS}  
+      DATABASE_TYPE: ${db_name}
+      DATABASE_USER: ${db_username}
+      DATABASE_PASSWORD: ${db_user_password}
+
+
+  - name: Clone a private repository
+    git:
+     repo: "{{ git_repo_url }}"
+     dest: "{{ repo_path }}"
+     version: "{{ repo_branch }}"
+     accept_hostkey: yes
+
+  - name: Install packages using the npm
+    command: "rm -rf node_modules package-lock.json && npm install"
+    args:
+      chdir: "{{ repo_path }}"   
+    environment: 
+       HASH_SALT: test
+       DATABASE_URL: mysql://${db_username}:${db_user_password}@${db_RDS}/${db_name}
+           
+  
+  - name: Run Mysql Script
+    shell: mysql -h ${db_RDS} -u ${db_username} -p ${db_name} --password=${db_user_password} < sql/schema.mysql.sql 
+    args:
+      chdir: "{{ repo_path }}"
+
+         
+    
+
+
+  - name: Build app
+    command: "npm run build --silent"
+    args:
+      chdir: "{{ repo_path }}"
+
+     
+  - name: Add systemd conf
+    template: src=umami.service dest=/etc/systemd/system/umami.service
+    notify:
+        start umami 
+  handlers:
+  - name: start umami
+    shell: systemctl start umami
+
+
+
+  
+
+
+     
+
+
